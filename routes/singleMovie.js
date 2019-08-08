@@ -5,7 +5,10 @@ const Upnext = require("../database/models/Upnext");
 module.exports = async (req, res) => {
   const MovieId = req.params.id;
   try {
-    const singleMovie = await Movies.findById(MovieId);
+    let singleMovie = await Movies.findById(MovieId);
+    singleMovie.views++;
+    singleMovie.save();
+    singleMovie = await Movies.findById(MovieId);
     const comments = await Comments.find({movieId: MovieId}).sort([['createdDate', -1]]);
     const news = await Upnext.find().sort([['createdDate', -1]]).limit(10);
     let n = Movies.find().countDocuments();

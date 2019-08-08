@@ -6,7 +6,7 @@ module.exports = (async (req, res) => {
       .limit(12);
     const movies = await Movies.find()
       .sort([[ 'createdDate', -1 ]])
-      .limit(12);
+      .limit(20);
     const MoviesHeaders = await Movies.find()
       .sort([[ 'createdDate', 1 ]])
       .limit(6);

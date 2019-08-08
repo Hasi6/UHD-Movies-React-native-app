@@ -7,6 +7,7 @@ import axios from "axios";
 
 // Created Components
 import MoviesHeader from "./MoviesHeader";
+import MoviesGrid from "./MoviesGrid";
 
 class Home extends Component {
   state = {
@@ -58,6 +59,7 @@ class Home extends Component {
     return (
       <ScrollView>
         {this.renderMoviesName()}
+        <MoviesGrid />
       </ScrollView>
     );
   }

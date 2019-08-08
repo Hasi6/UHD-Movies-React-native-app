@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 
 import Home from './Home';
-import SingleMovie from './SingleMovie';
+import SingleMovie from './SingleMovie/SingleMovie';
 
 const RouterComponent = () => {
   return(
