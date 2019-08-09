@@ -2,7 +2,7 @@ const Movies = require('../database/models/Movies');
 
 module.exports = (async (req, res) => {
     try {
-      let perPage = 1;
+      let perPage = 20;
       let page = req.params.page || 1;
   
       let allMoviesCount = await Movies.countDocuments();
@@ -16,11 +16,12 @@ module.exports = (async (req, res) => {
         .skip(Math.abs(perPage * page - perPage))
         .limit(perPage)
         .sort({ createdDate: -1 });
-      res.render("list", {
-        allMovies: allMovies,
-        page: page,
+      res.json({
+        allMovies,
+        allMoviesCount,
+        page,
         pages: Math.ceil(lastPage),
-        perPage: perPage
+        perPage
       });
     } catch (err) {
       console.error(err.message);

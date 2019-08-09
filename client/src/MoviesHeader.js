@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { SliderBox } from "react-native-image-slider-box";
 import { Actions } from 'react-native-router-flux';
 

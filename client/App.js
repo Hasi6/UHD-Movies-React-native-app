@@ -7,7 +7,7 @@ import Router from "./src/Router";
 export default function App() {
   return (
     <View style={{ flex: 1 }}>
-        <Router />
+      <Router />
     </View>
   );
 }

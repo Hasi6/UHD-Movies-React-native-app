@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import {
-  ScrollView,
-  ActivityIndicator,
-} from "react-native";
+import { ScrollView, View, ActivityIndicator } from "react-native";
 import axios from "axios";
 
 // Created Components
@@ -30,15 +27,20 @@ class Home extends Component {
         _id: ""
       }
     ],
-    loading: true
+    loading: true,
+    enabled: true
   };
 
   componentDidMount = async () => {
-    const res = await axios.get("http://uhdmovies.herokuapp.com");
-    await this.setState({
-      MoviesHeaders: res.data.MoviesHeaders,
-      loading: false
-    });
+    try {
+      const res = await axios.get("http://10.0.2.2:5000");
+      await this.setState({
+        MoviesHeaders: res.data.MoviesHeaders,
+        loading: false
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   renderMoviesName = () => {
@@ -54,16 +56,36 @@ class Home extends Component {
       return movies._id;
     });
 
-    return <MoviesHeader image={images} id={id}/>;
+    return <MoviesHeader image={images} id={id} />;
   };
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView scrollEnabled={this.state.enabled}>
       <NavigationBar />
-        {this.renderMoviesName()}
-        <NewMoviesGrid />
-        <MostViewsMoviesGrid />
+        <View>
+          {this.renderMoviesName()}
+          <ScrollView
+          onTouchMove={ev => {
+            this.setState({ enabled: false });
+          }}
+          onTouchCancel={e => {
+            this.setState({ enabled: true });
+          }}
+          >
+            <NewMoviesGrid />
+          </ScrollView>
+          <ScrollView
+            onTouchMove={ev => {
+              this.setState({ enabled: false });
+            }}
+            onTouchCancel={e => {
+              this.setState({ enabled: true });
+            }}
+          >
+            <MostViewsMoviesGrid />
+          </ScrollView>
+        </View>
       </ScrollView>
     );
   }
