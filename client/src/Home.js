@@ -7,7 +7,9 @@ import axios from "axios";
 
 // Created Components
 import MoviesHeader from "./MoviesHeader";
-import MoviesGrid from "./MoviesGrid";
+import NewMoviesGrid from "./NewMoviesGrid";
+import NavigationBar from "./NavigationBar/NavigationBar";
+import MostViewsMoviesGrid from "./MostViewsMoviesGrid";
 
 class Home extends Component {
   state = {
@@ -32,7 +34,7 @@ class Home extends Component {
   };
 
   componentDidMount = async () => {
-    const res = await axios.get("http://10.0.2.2:5000");
+    const res = await axios.get("http://uhdmovies.herokuapp.com");
     await this.setState({
       MoviesHeaders: res.data.MoviesHeaders,
       loading: false
@@ -58,8 +60,10 @@ class Home extends Component {
   render() {
     return (
       <ScrollView>
+      <NavigationBar />
         {this.renderMoviesName()}
-        <MoviesGrid />
+        <NewMoviesGrid />
+        <MostViewsMoviesGrid />
       </ScrollView>
     );
   }

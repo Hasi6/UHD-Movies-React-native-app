@@ -27,7 +27,8 @@
     "react-native-router-flux": "^4.0.6",
     "react-native-snap-carousel": "^3.8.0",
     "react-native-super-grid": "^3.0.8",
-    "react-native-web": "^0.11.4"
+    "react-native-web": "^0.11.4",
+    "semantic-ui-react": "^0.87.3"
   },
   "devDependencies": {
     "babel-preset-expo": "^6.0.0"

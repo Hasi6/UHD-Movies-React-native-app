@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
 import Home from './Home';
