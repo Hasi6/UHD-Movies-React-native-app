@@ -16,6 +16,7 @@
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
+    "react-native-grid-component": "^2.0.0",
     "react-native-image-picker": "^1.0.2",
     "react-native-image-slider-box": "^1.0.5",
     "react-native-link": "^4.1.0",
