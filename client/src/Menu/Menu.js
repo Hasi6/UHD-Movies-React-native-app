@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Content, List, ListItem } from "native-base";
 import { Actions } from "react-native-router-flux";

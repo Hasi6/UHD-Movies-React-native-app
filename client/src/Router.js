@@ -22,13 +22,13 @@ const RouterComponent = () => {
           hideNavBar
         >
           <Scene key="HomeComponent" component={Home} title="UDH Movies" initial/>
-          <Scene key="SingleMovie" component={SingleMovie} title="Movies" />
           <Scene
             key="AllMovies"
             component={AllMovies}
             title="A-Z List"
           />
         </Scene>
+        <Scene key="SingleMovie" component={SingleMovie} title="Movies" />
       </Scene>
     </Router>
   );

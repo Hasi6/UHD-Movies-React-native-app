@@ -37,7 +37,7 @@ class NewMoviesGrid extends Component {
   };
 
   componentDidMount = async () => {
-    const res = await axios.get("http://10.0.2.2:5000");
+    const res = await axios.get("https://uhdmovies.herokuapp.com");
     await this.setState({
       movies: res.data.movies,
       loading: false

@@ -33,7 +33,7 @@ class Home extends Component {
 
   componentDidMount = async () => {
     try {
-      const res = await axios.get("http://10.0.2.2:5000");
+      const res = await axios.get("https://uhdmovies.herokuapp.com");
       await this.setState({
         MoviesHeaders: res.data.MoviesHeaders,
         loading: false
@@ -63,9 +63,11 @@ class Home extends Component {
     return (
       <ScrollView scrollEnabled={this.state.enabled}>
       <NavigationBar />
-        <View>
           {this.renderMoviesName()}
           <ScrollView
+          onTouchStart={ev => {
+            this.setState({ enabled: false });
+          }}
           onTouchMove={ev => {
             this.setState({ enabled: false });
           }}
@@ -76,6 +78,9 @@ class Home extends Component {
             <NewMoviesGrid />
           </ScrollView>
           <ScrollView
+          onTouchStart={ev => {
+            this.setState({ enabled: false });
+          }}
             onTouchMove={ev => {
               this.setState({ enabled: false });
             }}
@@ -85,7 +90,6 @@ class Home extends Component {
           >
             <MostViewsMoviesGrid />
           </ScrollView>
-        </View>
       </ScrollView>
     );
   }

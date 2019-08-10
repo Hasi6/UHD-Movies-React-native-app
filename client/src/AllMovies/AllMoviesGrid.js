@@ -38,7 +38,7 @@ class AllMoviesGrid extends Component {
 
   componentDidMount = async () => {
     const res = await axios.get(
-      `http://10.0.2.2:5000/list/${this.state.page}`
+      `https://uhdmovies.herokuapp.com/list/${this.state.page}`
     );
     await this.setState({
       allMovies: res.data.allMovies,
@@ -54,7 +54,7 @@ class AllMoviesGrid extends Component {
         loading: true
       });
       const res = await axios.get(
-        `http://10.0.2.2:5000/list/${this.state.page}`
+        `https://uhdmovies.herokuapp.com/list/${this.state.page}`
       );
       await this.setState({
         allMovies: res.data.allMovies,

@@ -25,7 +25,7 @@ class SingleMovie extends Component {
   componentDidMount = async () => {
     try {
       const res = await axios.get(
-        `http://10.0.2.2:5000/single/${this.props.id}`
+        `https://uhdmovies.herokuapp.com/single/${this.props.id}`
       );
       await this.setState({
         singleMovie: res.data.singleMovie
@@ -36,6 +36,7 @@ class SingleMovie extends Component {
   };
 
   render() {
+    console.log(this.props.id);
     return (
       <View>
         <SingleMovieCard state={this.state.singleMovie} />

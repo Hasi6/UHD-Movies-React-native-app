@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { Content, List, ListItem } from "native-base";
 import axios from "axios";
+import { Actions } from "react-native-router-flux";
 
 class Search extends Component {
   state = {
@@ -39,7 +40,7 @@ class Search extends Component {
     }
 
     const res = await axios.get(
-      `http://10.0.2.2:5000/search/${this.state.searchKeyWord}`
+      `https://uhdmovies.herokuapp.com/search/${this.state.searchKeyWord}`
     );
     await this.setState({
       Movies: res.data.Movies
@@ -53,10 +54,20 @@ class Search extends Component {
           <Content>
             <List>
               <ListItem>
-                <Text>{movie.name}</Text>
-              </ListItem>
-              <ListItem>
-                <Text>{movie.year}</Text>
+                <TouchableOpacity key={movie._id} onPress={()=> Actions.SingleMovie({ id: movie._id })}>
+                <View style={{ display: "flex", flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 1 }}>
+                  <Image
+                    source={{ uri: movie.smallimage }}
+                    style={{ width: 50, height: 50 }}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text>{movie.name}</Text>
+                  <Text>{movie.year}</Text>
+                </View>
+              </View>
+                </TouchableOpacity>
               </ListItem>
             </List>
           </Content>
