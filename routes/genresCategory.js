@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
       category: { $regex: new RegExp(category, "i") }
     }).countDocuments();
 
-    let perPage = 4;
+    let perPage = 10;
     let lastPages = moviesCount / perPage;
 
     if (pageNum < 0 || pageNum > lastPages + 1) {
