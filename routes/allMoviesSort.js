@@ -2,7 +2,7 @@ const Movies = require('../database/models/Movies');
 
 module.exports = (async (req, res) => {
     try {
-      let perPage = 1;
+      let perPage = 10;
       let page = req.params.page || 1;
   
       let allMoviesCount = await Movies.countDocuments();
