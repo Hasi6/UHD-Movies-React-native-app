@@ -21,11 +21,12 @@ const RouterComponent = () => {
           drawerWidth={300}
           hideNavBar
         >
-          <Scene key="HomeComponent" component={Home} title="UDH Movies" initial/>
+          <Scene key="HomeComponent" component={Home} title="UDH Movies" />
           <Scene
             key="AllMovies"
             component={AllMovies}
             title="A-Z List"
+            initial
           />
         </Scene>
         <Scene key="SingleMovie" component={SingleMovie} title="Movies" />

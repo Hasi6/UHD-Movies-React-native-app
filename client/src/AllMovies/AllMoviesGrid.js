@@ -98,12 +98,12 @@ class AllMoviesGrid extends Component {
   render() {
     return (
       <ScrollView>
+        {this.renderMovies()}
         <Paginate
           allMoviesCount={this.state.allMoviesCount}
           currentPage={this.state.page}
           press={this.onPress}
         />
-        {this.renderMovies()}
       </ScrollView>
     );
   }

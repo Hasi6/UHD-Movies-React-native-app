@@ -66,7 +66,7 @@ const Paginate = props => {
       return (
         <View key={page}>
           <TouchableOpacity onPress={() => props.press(page)}>
-            <View>
+            <View style={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }} >
               <Text style={{ display: "flex", flexDirection: "column" }}>
                 {page}
               </Text>
