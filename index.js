@@ -94,7 +94,7 @@ app.get("/genres/category/:category/:page", genresCategory);
 app.get("/genres/country/:country/:page", genresCountry);
 app.get("/addNews", addNews);
 app.get("/verify/:userid", verifyEmail);
-app.get('/search', liveSearch);
+app.get('/search/:keyWord', liveSearch);
 
 app.get("*", notFound);
 

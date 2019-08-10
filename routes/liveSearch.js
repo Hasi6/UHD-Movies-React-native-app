@@ -1,13 +1,13 @@
 const Movies = require('../database/models/Movies');
 
 const liveSearch = async(req, res, next)=>{
-    var q = req.query.q;
+    var keyWord = req.params.keyWord;
     try{
     const result = await Movies.find({
         name: {
-          $regex: new RegExp(q, "i")
+          $regex: new RegExp(keyWord, "i")
         }}).limit(10);
-        res.send(result);
+        res.json({Movies: result});
       }catch(err){
         console.error(err.message);
       }

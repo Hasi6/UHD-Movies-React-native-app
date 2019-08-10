@@ -12,6 +12,7 @@
     "expo": "^34.0.1",
     "expo-image-picker": "^6.0.0",
     "link": "^0.1.5",
+    "native-base": "^2.13.4",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
@@ -26,10 +27,11 @@
     "react-native-nested-scroll-view": "^8.0.0",
     "react-native-popup-menu": "^0.15.6",
     "react-native-router-flux": "^4.0.6",
+    "react-native-search-bar": "^3.4.2",
+    "react-native-search-box": "0.0.19",
     "react-native-snap-carousel": "^3.8.0",
     "react-native-super-grid": "^3.0.8",
-    "react-native-web": "^0.11.4",
-    "semantic-ui-react": "^0.87.3"
+    "react-native-web": "^0.11.4"
   },
   "devDependencies": {
     "babel-preset-expo": "^6.0.0"

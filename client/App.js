@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 // created components
 import Router from "./src/Router";
 
-export default function App() {
+const App = () => {
   return (
     <View style={{ flex: 1 }}>
       <Router />
@@ -20,3 +20,5 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+export default App;
