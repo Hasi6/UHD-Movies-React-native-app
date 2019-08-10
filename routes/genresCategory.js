@@ -4,13 +4,13 @@ module.exports = async (req, res) => {
   try {
     const category = req.params.category;
     const pageNum = req.params.page
-    console.log(category);
+    console.log(pageNum);
 
     const moviesCount = await Movies.find({
       category: { $regex: new RegExp(category, "i") }
     }).countDocuments();
 
-    let perPage = 1;
+    let perPage = 4;
     let lastPages = moviesCount / perPage;
 
     if (pageNum < 0 || pageNum > lastPages + 1) {
@@ -24,14 +24,17 @@ module.exports = async (req, res) => {
       .limit(perPage)
       .sort({ createDate: 1 });
 
-    console.log(moviesCount);
-    res.render("moviesCategory", {
-      searchMovies: searchMovies,
-      moviesCount: moviesCount,
-      pageNum: pageNum,
+    console.log(await Movies.find({
+      category: { $regex: new RegExp(category, "i") }
+    })
+      .skip(Math.abs(perPage * pageNum - perPage)).countDocuments());
+    res.json({
+      searchMovies,
+      moviesCount,
+      pageNum,
       pages: Math.ceil(lastPages),
       perPage: perPage,
-      category: category
+      category
     });
   } catch (err) {
     console.error(err.message);

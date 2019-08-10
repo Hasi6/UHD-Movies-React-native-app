@@ -5,6 +5,7 @@ import { Icon } from "native-base";
 import Home from "./Home";
 import SingleMovie from "./SingleMovie/SingleMovie";
 import AllMovies from "./AllMovies/AllMovies";
+import CategoryMovies from "./CategoryMovies/CategoryMovies";
 
 // Drawer
 import Menu from "./Menu/Menu";
@@ -21,15 +22,20 @@ const RouterComponent = () => {
           drawerWidth={300}
           hideNavBar
         >
-          <Scene key="HomeComponent" component={Home} title="UDH Movies" />
           <Scene
-            key="AllMovies"
-            component={AllMovies}
-            title="A-Z List"
+            key="HomeComponent"
+            component={Home}
+            title="UDH Movies"
             initial
           />
+          <Scene key="AllMovies" component={AllMovies} title="A-Z List" />
         </Scene>
         <Scene key="SingleMovie" component={SingleMovie} title="Movies" />
+        <Scene
+          key="CategoryMovies"
+          component={CategoryMovies}
+          title="Movies By Category"
+        />
       </Scene>
     </Router>
   );

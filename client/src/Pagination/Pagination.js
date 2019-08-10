@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 const Paginate = props => {
   let totalItems = props.allMoviesCount,
     currentPage = props.currentPage,
-    pageSize = 20,
+    pageSize = 4,
     maxPages = 10;
   // calculate total pages
   let totalPages = Math.ceil(totalItems / pageSize);

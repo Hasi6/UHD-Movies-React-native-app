@@ -74,6 +74,9 @@ class Home extends Component {
           onTouchCancel={e => {
             this.setState({ enabled: true });
           }}
+          onTouchEnd={e => {
+            this.setState({ enabled: true });
+          }}
           >
             <NewMoviesGrid />
           </ScrollView>
@@ -83,6 +86,9 @@ class Home extends Component {
           }}
             onTouchMove={ev => {
               this.setState({ enabled: false });
+            }}
+            onTouchEnd={e => {
+              this.setState({ enabled: true });
             }}
             onTouchCancel={e => {
               this.setState({ enabled: true });
