@@ -10,7 +10,30 @@ class Comments extends Component {
     email: "",
     message: "",
     movieId: this.props.id,
-    enabled: true
+    enabled: true,
+    comments: [
+        {
+          createdDate: "",
+          email: "",
+          message: "",
+          movieId: "",
+          name: "",
+          _id: ""
+        }
+      ]
+  };
+
+  componentDidMount = async () => {
+    try {
+      const res = await axios.get(
+        `https://uhdmovies.herokuapp.com/single/${this.props.id}`
+      );
+      await this.setState({
+        comments: res.data.comments
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   onChangeText = (e, name) => {
@@ -20,7 +43,7 @@ class Comments extends Component {
   };
 
   renderComment = () => {
-    return this.props.comments.map(comment => {
+    return this.state.comments.map(comment => {
       return (
         <ListItem key={comment._id}>
           <View>
@@ -51,7 +74,9 @@ class Comments extends Component {
           "content-Type": 'application/json'
         }
       })
-      console.log(res);
+      this.setState({
+          comments: res.data.comments
+      })
   }
 
   enableDisable = enable => {

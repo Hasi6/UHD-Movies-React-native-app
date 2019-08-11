@@ -21,16 +21,6 @@ class SingleMovie extends Component {
       year: "",
       _id: this.props.id
     },
-    comments: [
-      {
-        createdDate: "",
-        email: "",
-        message: "",
-        movieId: "",
-        name: "",
-        _id: ""
-      }
-    ],
     enabled: true
   };
 
@@ -77,7 +67,6 @@ class SingleMovie extends Component {
           }}
         >
           <Comments
-            comments={this.state.comments}
             id={this.state.singleMovie._id}
             scroll={this.enableDisableScroll}
           />
