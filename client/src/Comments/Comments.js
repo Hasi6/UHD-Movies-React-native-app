@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, ScrollView, Text, TextInput } from "react-native";
 import { Content, List, ListItem, Button } from "native-base";
 import Textarea from "react-native-textarea";
-import axios from 'axios';
+import axios from "axios";
 
 class Comments extends Component {
   state = {
@@ -12,15 +12,15 @@ class Comments extends Component {
     movieId: this.props.id,
     enabled: true,
     comments: [
-        {
-          createdDate: "",
-          email: "",
-          message: "",
-          movieId: "",
-          name: "",
-          _id: ""
-        }
-      ]
+      {
+        createdDate: "",
+        email: "",
+        message: "",
+        movieId: "",
+        name: "",
+        _id: ""
+      }
+    ]
   };
 
   componentDidMount = async () => {
@@ -45,39 +45,50 @@ class Comments extends Component {
   renderComment = () => {
     return this.state.comments.map(comment => {
       return (
-        <ListItem key={comment._id}>
-          <View>
-            <Text>
-              {comment.name}
-              {"\n"} {comment.message}
-              {"\n"}
-              {comment.createdDate}
-            </Text>
-          </View>
-        </ListItem>
+        
+          <ListItem key={comment.id}>
+            <View>
+              <Text>
+                {comment.name}
+                {"\n"} {comment.message}
+                {"\n"}
+                {comment.createdDate}
+              </Text>
+            </View>
+          </ListItem>
       );
     });
   };
 
-  addComment = async() =>{
-      if(this.state.name === '' || this.state.email === '' || this.state.message === ''){
-          return alert('Please Fill All the Fields')
-      }
-      console.log(this.props.id);
-      const body = {
-          name: this.state.name,
-          email: this.state.email,
-          message: this.state.message,
-      }
-      const res = await axios.post(`https://uhdmovies.herokuapp.com/comments/${this.props.id}`, body, {
+  addComment = async () => {
+    if (
+      this.state.name === "" ||
+      this.state.email === "" ||
+      this.state.message === ""
+    ) {
+      return alert("Please Fill All the Fields");
+    }
+    const body = {
+      name: this.state.name,
+      email: this.state.email,
+      message: this.state.message
+    };
+    const res = await axios.post(
+      `https://uhdmovies.herokuapp.com/comments/${this.props.id}`,
+      body,
+      {
         headers: {
-          "content-Type": 'application/json'
+          "content-Type": "application/json"
         }
-      })
-      this.setState({
-          comments: res.data.comments
-      })
-  }
+      }
+    );
+    this.setState({
+      comments: res.data.comments,
+      name: "",
+      email: "",
+      message: ""
+    });
+  };
 
   enableDisable = enable => {
     this.props.scroll(enable);
@@ -119,10 +130,24 @@ class Comments extends Component {
             />
           </View>
         </View>
-        <Button onPress={()=> this.addComment()}><Text>Add Comment</Text></Button>
+        <Button onPress={() => this.addComment()}>
+          <Text>Add Comment</Text>
+        </Button>
         <Text>Comments</Text>
-        <View>
-          <List>{this.renderComment()}</List>
+        <View style={{ height: 100 }}>
+          <ScrollView 
+          onTouchStart={ev => {
+            this.enableDisable(false);
+          }}
+          onTouchMove={ev => {
+            this.enableDisable(false);
+          }}
+          onTouchCancel={e => {
+            this.enableDisable(true);
+          }}
+          onTouchEnd={e => {
+            this.enableDisable(true);
+          }}>{this.renderComment()}</ScrollView>
         </View>
       </View>
     );

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Text, TextInput } from "react-native";
 import axios from "axios";
+import { Content, List, ListItem, Button } from "native-base";
+import Textarea from "react-native-textarea";
 import SingleMovieCard from "./SingleMovieCard";
 import Comments from "../Comments/Comments";
 
@@ -21,8 +23,13 @@ class SingleMovie extends Component {
       year: "",
       _id: this.props.id
     },
-    enabled: true
+    enabled: true,
+
   };
+
+  
+
+  
 
   componentDidMount = async () => {
     try {
@@ -38,41 +45,41 @@ class SingleMovie extends Component {
     }
   };
 
-  enableDisableScroll = enable => {
-    console.log(enable);
+  scroll = (enabled)=>{
     this.setState({
-      enable: enable
-    });
-  };
+      enabled: enabled
+    })
+  }
+
+  
 
   render() {
     // console.log(this.state.enabled);
     return (
-      <ScrollView>
-        <ScrollView scrollEnabled={this.state.enabled}>
-          <SingleMovieCard state={this.state.singleMovie} />
+      <ScrollView scrollEnabled={this.state.enabled}>
+        <SingleMovieCard state={this.state.singleMovie} />
+          <Comments id={this.state.singleMovie._id} scroll={this.scroll}/>
         </ScrollView>
-        <ScrollView
-          onTouchStart={ev => {
-            this.setState({enabled:false} );
-          }}
-          onTouchMove={ev => {
-            this.setState({enabled:false} );
-          }}
-          onTouchCancel={e => {
-            this.setState({enabled:true} );
-          }}
-          onTouchEnd={e => {
-            this.setState({enabled:true} );
-          }}
-        >
-          <Comments
-            id={this.state.singleMovie._id}
-            scroll={this.enableDisableScroll}
-          />
-        </ScrollView>
-      </ScrollView>
     );
   }
 }
+const styles = {
+  container: {
+    flex: 1,
+    padding: 30,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textareaContainer: {
+    height: 180,
+    padding: 5,
+    backgroundColor: "#F5FCFF"
+  },
+  textarea: {
+    textAlignVertical: "top", // hack android
+    height: 170,
+    fontSize: 14,
+    color: "#333"
+  }
+};
 export default SingleMovie;
