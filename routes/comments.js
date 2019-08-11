@@ -12,12 +12,14 @@ module.exports = async (req, res)=>{
         message
     });
 
+    console.log(name);
+
     try{
         const success = await comment.save();
         if(success){
-            return res.redirect('/single/'+movieId);
+            return res.json('hari');
         }
-        return res.send('Server Error Please Try Again Later');
+        return res.json('weradi');
     }catch(err){
         console.error(err.message);
     }

@@ -18,7 +18,6 @@ const SingleMovieCard = ({state}) => {
     year,
     _id
   } = state;
-  console.log(name);
   const images = [smallimage, largeimage]
   return (
     <View>
