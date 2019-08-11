@@ -46,7 +46,7 @@ class Comments extends Component {
           email: this.state.email,
           message: this.state.message,
       }
-      const res = await axios.post(`http://10.0.2.2:5000/comments/${this.props.id}`, body, {
+      const res = await axios.post(`https://uhdmovies.herokuapp.com/comments/${this.props.id}`, body, {
         headers: {
           "content-Type": 'application/json'
         }

@@ -16,8 +16,11 @@ module.exports = async (req, res)=>{
 
     try{
         const success = await comment.save();
+        const comments = await Comments.find({movieId: movieId}).sort([['createdDate', -1]]);
         if(success){
-            return res.json('hari');
+            return res.json({
+                comments
+            });
         }
         return res.json('weradi');
     }catch(err){
